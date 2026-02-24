@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Printable Flashcard Maker — A4 PDF (Fixed)</title>
+  <title>Flashcard Maker</title>
   <style>
     :root{
       --page-margin-mm: 10mm;
@@ -26,8 +26,8 @@
     .row{display:flex;gap:8px;align-items:center}
     label{font-size:13px}
     select,input[type=number]{padding:6px;border:1px solid #ddd;border-radius:6px}
-    button{padding:8px 12px;border-radius:8px;border:none;background:var(--ui-accent);color:white;cursor:pointer}
-    button.ghost{background:white;color:var(--ui-accent);border:1px solid var(--ui-accent)}
+    button, a.button-link{padding:8px 12px;border-radius:8px;border:none;background:var(--ui-accent);color:white;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+    button.ghost, a.button-link.ghost{background:white;color:var(--ui-accent);border:1px solid var(--ui-accent)}
     .small{font-size:12px;color:#444}
 
     main{display:flex;gap:16px;padding:12px}
@@ -66,16 +66,16 @@
 <body>
   <header class="no-print">
     <div>
-      <h1>Flashcard Maker — A4 (Print to single PDF)</h1>
+      <h1>Flashcard Maker</h1>
       <div class="subtitle">Paste pairs like <code>desert: a dry place</code> (one per line). Definitions appear on separate pages in the generated PDF. Use <strong>Save as PDF</strong> in the print dialog.</div>
     </div>
-    <div class="small">Made offline — single HTML file. Changes saved when you edit & save the file locally.</div>
+    <div class="small">Press download app file to use the flash card maker offline without internet!</div>
   </header>
 
   <main>
     <section class="left no-print">
       <div class="controls previewBox">
-        <label for="inputArea"><strong>Vocabulary input (one pair per line)</strong></label>
+        <label for="inputArea"><strong>Vocabulary Input (one pair per line)</strong></label>
         <textarea id="inputArea" placeholder="e.g. desert: a dry place\nriver: flowing water"></textarea>
         <div class="row" style="margin-top:8px;flex-wrap:wrap">
           <label>Cards per page:</label>
@@ -86,7 +86,7 @@
             <option value="16">16 (4×4)</option>
           </select>
 
-          <label><input id="shuffleDefs" type="checkbox" /> Shuffle definitions</label>
+          <label><input id="shuffleDefs" type="checkbox" /> ?</label>
           <label><input id="showCut" type="checkbox" checked /> Show cut guides</label>
           <label><input id="addNumber" type="checkbox" /> Add index numbers</label>
         </div>
@@ -96,6 +96,10 @@
           <button id="printBtn" class="ghost">Save as PDF (Print)</button>
           <button id="exampleBtn" class="ghost">Load example</button>
           <button id="clearBtn" class="ghost">Clear</button>
+
+          <!-- New download button: place offline-flash-card-maker.html beside other controls.
+               Put the file "offline-flash-card-maker.html" in the same folder as this file. -->
+          <a id="downloadBtn" class="button-link ghost" href="offline-flash-card-maker.html" download="offline-flash-card-maker.html" style="margin-left:6px;" role="button" title="Download offline-flash-card-maker.html">Download app file</a>
         </div>
 
         <div id="status" style="margin-top:8px"></div>
@@ -106,7 +110,6 @@
         <ul style="margin:6px 0 0 18px">
           <li>Use <strong>A4</strong> paper size and <strong>scale 100%</strong> when saving to PDF.</li>
           <li>Turn off headers/footers in your print dialog for best results.</li>
-          <li>If you want the definitions to match terms exactly on the same index, uncheck <em>Shuffle definitions</em>.</li>
         </ul>
       </div>
     </section>
